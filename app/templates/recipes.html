@@ -1,25 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {#{% if recipes %}{#}
-        {#<h1>Recipes</h1>#}
-        {#<ul>#}
-            {#{% for recipe in recipes %}#}
-                {#<li><a href="{% url 'recipe_detail' recipes_name=recipe %}">{{ recipe }}</a></li>#}
-            {#{% endfor %}#}
-        {#</ul>#}
+    {% if recipes %}
+        <h1>Recipes</h1>
+        <ul>
+            {% for recipe in recipes %}
+                <li><a href="{% url 'recipe_detail' recipes_name=recipe %}">{{ recipe }}</a></li>
+            {% endfor %}
+        </ul>
 
-        <form>
-            <div>
-
-            </div>
         
-            <h1 class="search-header">Search By Specific Recipe</h1>
-            <input type="text"> </input>
-
-        </form>
-    {#{% elif recipe %}#}
-        {#<h1>{{ recipe.recipe_name }}</h1>#}
-        {#<p>{{ recipe.instructions }}</p>#}
-    {#{% endif %}#}
+        <button type="button" class="form-buttons form-1-home-button">Built-in Choices</button>
+        <button type="button" class="form-buttons form-2-home-button">Filter Recipes</button>
+    {% elif recipe %}
+        <h1>{{ recipe.recipe_name }}</h1>
+        <p>{{ recipe.instructions }}</p>
+    {% endif %}
 {% endblock %}

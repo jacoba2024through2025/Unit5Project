@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    
     
 }
 
@@ -15,33 +15,32 @@ li, a, button {
     
     font-weight: 500;
     font-size: 15pt;
-    color: #edf0f1;
+    
     text-decoration: none;
     list-style-type: none;
     
     
 }
 
-a:hover{
-    background-color: rgba(128, 128, 128, 0.283);
-    border-radius: 3%;
-}
+
 
 .cta {
     background: none;
 }
 
+
+/*Styling for the navigation bar*/
 header {
     
     
-    
+    box-shadow: .50em .50em 1em;
     padding: 30px 10%;
-    background-color: #3e8a5d;
+    background-color: white;
 }
 
 .link-container {
     display: flex;
-    gap: 2em;
+    gap: 10em;
     align-content: center;
 
 }
@@ -52,11 +51,109 @@ header {
     margin-left:10em;
     border-radius: 2%;
     text-align: center;
-    
-    color: #edf0f1;
+    font-family: sans-serif;
+    color: rgb(210,45,0,255);
 }
 
 .search-div {
     background-color:#3e8a5d;
     
+}
+
+.logo-properties {
+    width: 11em;
+}
+
+.nav-button-style {
+    display: flex;
+    
+}
+
+.pill {
+    font-family: sans-serif;
+    padding: 0.5em 1em;
+    margin: 0.25em;
+    border-radius: 1em;
+    border: none;
+    outline: none;
+    background: rgb(210,45,0,255);
+    cursor: pointer;
+    color: white;
+    
+    box-shadow: 2px 2px 0 0 white,
+    4px 4px 0 0 #0f172a;
+    transition-duration: 200ms;
+    
+}
+
+.pill::after {
+    content : '';
+    height: 0.2em;
+    width: 100%;
+    background: black;
+    display: block;
+    left: 0;
+    bottom: -8px;
+    opacity: 0;
+}
+
+.pill:hover::after {
+    opacity: 1;
+}
+
+.pill:hover {
+    background: rgb(180,45,0,255);
+    box-shadow: 3px 3px white, 6px 6px 0 0 #0f172a;
+    transform: translate(-2px, -2px);
+    
+}
+
+
+/*For the home page only*/
+
+.form-buttons {
+    font-family: sans-serif;
+    padding: 0.5em 1em;
+    margin: 0.25em;
+    border-radius: 1em;
+    border: none;
+    outline: none;
+    background: rgb(210,45,0,255);
+    cursor: pointer;
+    color: white;
+    box-shadow: 2px 2px 0 0 white,
+    4px 4px 0 0 #0f172a;
+    transition-duration: 200ms;
+
+}
+
+.form-buttons:hover {
+    box-shadow: 3px 3px white, 6px 6px 0 0 #0f172a;
+    transform: translate(-2px, -2px);
+    background: rgb(180,45,0,255);
+}
+
+.form-buttons::after {
+    content : '';
+    height: 0.2em;
+    width: 100%;
+    background: black;
+    display: block;
+    left: 0;
+    bottom: -8px;
+    opacity: 0;
+}
+
+.form-buttons:hover::after {
+    opacity: 1
+}
+
+.form-1-home-button {
+    margin-left: 20em;
+    margin-top: 20em;
+}
+
+.form-2-home-button {
+    margin-right: 20em;
+    margin-top: 20em;
 }

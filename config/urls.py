@@ -22,6 +22,7 @@ from app.views import detail_view
 urlpatterns = [
     path("", detail_view, name='home'),
     path("team/<str:recipes_name>/", detail_view, name='recipe_detail'),
+    
    
     path("admin/", admin.site.urls),
     

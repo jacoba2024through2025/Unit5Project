@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+
+
+
+class Navigation(models.Model):
+    title = models.CharField
+    recipe_page = models.URLField()
+    
+

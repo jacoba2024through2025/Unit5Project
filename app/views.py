@@ -55,3 +55,7 @@ def detail_view(request: HttpRequest, recipes_name: str=None) -> HttpResponse:
     
     return render(request, "recipes.html", {'recipes': recipedata.keys()})
 
+
+def search_view(request: HttpRequest) -> HttpResponse:
+    pass
+
