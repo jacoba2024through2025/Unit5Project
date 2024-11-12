@@ -56,6 +56,15 @@ def detail_view(request: HttpRequest, recipes_name: str=None) -> HttpResponse:
     return render(request, "recipes.html", {'recipes': recipedata.keys()})
 
 
-def search_view(request: HttpRequest) -> HttpResponse:
-    pass
+def filter_recipes(request):
+    return render(request, 'filterrecipes.html')
+
+def built_in_choices(request):
+    return render(request, 'builtinchoices.html')
+
+def forums(request):
+    return render(request,'forums.html')
+
+def share(request):
+    return render(request, 'sharing.html')
 

@@ -40,8 +40,9 @@ header {
 
 .link-container {
     display: flex;
-    gap: 10em;
+    gap: 5em;
     align-content: center;
+    
 
 }
 
@@ -53,6 +54,12 @@ header {
     text-align: center;
     font-family: sans-serif;
     color: rgb(210,45,0,255);
+}
+
+.moving-links-div {
+    margin-top: 4em;
+    display: flex;
+    gap: 7em;
 }
 
 .search-div {
@@ -150,10 +157,100 @@ header {
 
 .form-1-home-button {
     margin-left: 20em;
-    margin-top: 20em;
+    margin-top: 10em;
 }
 
 .form-2-home-button {
     margin-right: 20em;
-    margin-top: 20em;
+    margin-top: 10em;
+}
+
+.form-1-anchor-style {
+    text-decoration: none;
+    color: inherit;
+}
+
+.form-2-anchor-style {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-link-styling {
+    
+    color: rgb(210,45,0,255);
+    font-family: sans-serif;
+    
+    
+    
+}
+
+.nav-link-styling::after {
+    content : '';
+    height: 0.25em;
+    width: 100%;
+    background: black;
+    display: block;
+    left: 0;
+    bottom: -8px;
+    opacity: 0;
+
+}
+
+.nav-link-styling:hover::after {
+    opacity: 1;
+}
+
+.nav-link-styling:hover {
+    
+    box-shadow: 3px 3px white, 6px 6px 0 0 #0f172a;
+    transform: translate(-2px, -2px);
+
+}
+
+.icon-styling {
+    margin-right: 0.5em;
+}
+
+/* All content for the dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 20%;
+    color: white;
+    font-family: sans-serif;
+    background-color: rgb(210,45,0,255);
+    padding: .75rem;
+    border-radius: .25rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+}
+
+.dropdown-menu.active {
+    display: block; 
+    opacity: 1;     
+}
+
+.dropdown:focus-within .dropdown-menu {
+    opacity: 1;
+    display: block; 
+}
+
+.dropdown > .link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    display: block; 
 }

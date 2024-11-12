@@ -17,11 +17,16 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from app.views import detail_view 
 
+from app import views
 urlpatterns = [
-    path("", detail_view, name='home'),
-    path("team/<str:recipes_name>/", detail_view, name='recipe_detail'),
+    path("", views.detail_view, name='home'),
+    path("team/<str:recipes_name>/", views.detail_view, name='recipe_detail'),
+    path('filterrecipes/', views.filter_recipes, name='filterrecipes'),
+    path('builtinchoices/', views.built_in_choices, name='builtinchoices'),
+    path('forums', views.forums, name='forums'),
+    path('share',views.share, name='share'),
+    
     
    
     path("admin/", admin.site.urls),
