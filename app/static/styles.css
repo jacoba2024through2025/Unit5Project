@@ -254,3 +254,81 @@ header {
     opacity: 1;
     display: block; 
 }
+
+
+.form-background {
+    margin-top: 2em;
+    background: white;
+    margin-right: 65em;
+    margin-left: 2em;
+    border-radius: 1em;
+    box-shadow: .50em .50em 1em;
+    
+}
+/*All content for check boxes filter.html */
+
+
+
+[type="checkbox"] {
+    opacity: 0;
+}
+
+[type="checkbox"] + label {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    display: inline-block;
+    color: red;
+    font-family: sans-serif;
+    font-weight: 500;
+    line-height: 25px;
+}
+
+[type="checkbox"] + label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    outline: 2px solid #aaa;
+    background: #fff;
+}
+
+[type="checkbox"]:checked + label::before {
+    outline: 2px solid #5fd25f;
+}
+
+[type="checkbox"]:checked + label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    outline: 2px solid #5fd25f;
+    background-image: url('trans-check.png'); 
+    background-size: contain;
+    background-position: center;
+}
+
+/* filter recipes button styling */
+.form-buttons-filter {
+    margin-left: 4em;
+}
+
+/*output for filterrecipes styling */
+.output-display {
+    background: white;
+    
+    
+}
+
+.result-fonttype {
+    font-family: sans-serif;
+}
+
+
+
+
+

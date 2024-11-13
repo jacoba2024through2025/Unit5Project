@@ -2,37 +2,60 @@
 
 {% block content %}
 
-<h1>This is the page for built-in filtering</h1>
+{#Filter by cooking method#}
+<form method="POST" class="form-background">
+    {% csrf_token %}
+    <p>
+        <input type="checkbox" id="crockpot" value="Crock Pot" name="filterItem">
+        <label for="crockpot">Crock Pot</label>
+    </p>
 
-<form>
+    <p>
+        <input type="checkbox" id="airfryer" value="Air Fryer" name="filterItem">
+        <label for="airfryer">Air Fryer</label>
+    </p>
 
-    <label>
-        Crock Pot
-        <input type="checkbox">
-    </label>
+    <p>
+        <input type="checkbox" id="microwave"  value="Microwave" name="filterItem">
+        <label for="microwave">Microwave</label>
+    </p>
 
-    <label>
-        Oven
-        <input type="checkbox">
-    </label>
+    <p>
+        <input type="checkbox" id="oven" value="Oven" name="filterItem">
+        <label for="oven">Oven</label>
+    </p>
 
-    <label>
-        Microwave
-        <input type="checkbox">
-    </label>
+    <p>
+        <input type="checkbox" id="skillet" value="Skillet" name="filterItem">
+        <label class="label-form-styling" for="skillet">Skillet</label>
+    </p>
+    <button type="submit" class="form-buttons form-buttons-filter">
+        Submit
 
-    <label>
-        Skillet
-        <input type="checkbox">
-    </label>
-
-    <label>
-        Air Fryer
-        <input type="checkbox">
-    </label>
-    
-
-
+    </button>
 </form>
+{#Filter by recipe author#}
+<select name="recipe_author" id="recipe_author" class="form-background">
+    <option value="">--Select Author--</option>
+    {% for author in recipe_authors %}
+        <option value="{{ author }}">{{ author }}</option>
+    {% endfor %}
+    
+</select>
+
+
+<div class="output-display form-background">
+    {% for recipe in result %}
+        <p class="result-fonttype">Recipe Name:{{ recipe.recipe_name }}</p>
+        <p class="result-fonttype">Method:{{ recipe.recipe_type }}</p>
+        <p class="result-fonttype">Author:{{ recipe.recipe_author }}</p>
+        <p class="result-fonttype">Ingredients:{{ recipe.ingredients_needed }}</p>
+        <p class="result-fonttype">Instructions:{{ recipe.recipe_instructions}}</p>
+    {% empty %}
+        <p>No recipes found.</p>
+    {% endfor %}
+
+    
+</div>
 
 {% endblock %}

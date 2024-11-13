@@ -3,6 +3,7 @@ from django.http.request import HttpRequest
 from django.shortcuts import render
 from typing import Dict
 from dataclasses import dataclass
+from app.models import RecipeData
 
 @dataclass
 class Recipes:
@@ -56,8 +57,49 @@ def detail_view(request: HttpRequest, recipes_name: str=None) -> HttpResponse:
     return render(request, "recipes.html", {'recipes': recipedata.keys()})
 
 
+from django.shortcuts import render
+from .models import RecipeData
+
 def filter_recipes(request):
-    return render(request, 'filterrecipes.html')
+    context = {}
+
+    
+    recipe_authors = get_recipe_authors(request)
+
+    
+    if request.method == "POST":
+        all_data = []
+
+        
+        recipe_author = request.POST.get('recipe_author')
+        if recipe_author:
+            all_recipes = RecipeData.objects.filter(recipe_author=recipe_author)
+            all_data.extend(all_recipes)
+
+        
+        filter_type = request.POST.getlist("filterItem")
+        if filter_type:
+            for option in filter_type:
+                all_recipes = RecipeData.objects.filter(recipe_type=option)
+                all_data.extend(all_recipes)
+
+        context['result'] = all_data
+
+    
+    context['recipe_authors'] = recipe_authors
+
+    
+    context['recipes'] = RecipeData.objects.all()
+
+    return render(request, 'filterrecipes.html', context)
+
+def get_recipe_authors(request):
+    
+    recipe_authors = RecipeData.objects.values_list('recipe_author', flat=True).distinct()
+    
+
+    
+    return recipe_authors
 
 def built_in_choices(request):
     return render(request, 'builtinchoices.html')
