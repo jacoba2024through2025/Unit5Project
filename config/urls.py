@@ -24,6 +24,8 @@ urlpatterns = [
     path("team/<str:recipes_name>/", views.detail_view, name='recipe_detail'),
     path('filterrecipes/', views.filter_recipes, name='filterrecipes'),
     path('builtinchoices/', views.built_in_choices, name='builtinchoices'),
+    path('recipecreation/', views.create_recipe_form, name="recipecreation"),
+    path('currentrecipe/', views.current_recipe, name="currentrecipe"),
     path('forums', views.forums, name='forums'),
     path('share',views.share, name='share'),
     

@@ -155,7 +155,12 @@ header {
     opacity: 1
 }
 
-.form-1-home-button {
+.button-div {
+    background: blue;
+    display: inline;
+}
+
+/*.form-1-home-button {
     margin-left: 20em;
     margin-top: 10em;
 }
@@ -163,7 +168,7 @@ header {
 .form-2-home-button {
     margin-right: 20em;
     margin-top: 10em;
-}
+}*/
 
 .form-1-anchor-style {
     text-decoration: none;

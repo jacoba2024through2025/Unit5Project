@@ -1,4 +1,6 @@
+
 {% extends "base.html" %}
+{%load static%}
 
 {% block content %}
     {#{% if recipes %}#}
@@ -9,17 +11,41 @@
             {#{% endfor %}#}
         {#</ul>#}
 
+        <img src="{% static 'recipe1.jpg' %}" alt="Image of Ham Sliders">
+
+        <div class="button-div">
+            <button type="button" class="form-buttons form-1-home-button">
+                <a href="{% url 'builtinchoices' %}" class="form-1-anchor-style">
+                    Filter Recipes
+                </a>
+                <i class="fa-brands fa-searchengin"></i>
+            </button>
+
+        </div>
+
+        <div class="button-div">
+            <button type="button" class="form-buttons form-2-home-button">
+                <a href="{% url 'filterrecipes' %}" class="form-2-anchor-style">
+                    Built-in Choices
+                </a>
+                <i class="fa-regular fa-square-check"></i>
+            </button>
+
+        </div>
+
+        <div class="button-div">
+            <button type="button" class="form-buttons">
+            
+                <a href="{% url 'recipecreation' %}" class="form-1-anchor-style">
+                    Create Your Own Recipe!
+                </a>
+                <i class="fa-solid fa-plus"></i>
+            </button>
         
-        <button type="button" class="form-buttons form-1-home-button">
-            <a href="{% url 'builtinchoices' %}" class="form-1-anchor-style">
-                Built-in Choices
-            </a>
-        </button>
-        <button type="button" class="form-buttons form-2-home-button">
-            <a href="{% url 'filterrecipes' %}" class="form-2-anchor-style">
-                Filter Recipes
-            </a>
-        </button>
+        </div>
+        
+        
+        
     
         
     {#{% elif recipe %}#}

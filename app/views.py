@@ -59,21 +59,24 @@ def detail_view(request: HttpRequest, recipes_name: str=None) -> HttpResponse:
 
 from django.shortcuts import render
 from .models import RecipeData
+from app.forms import NewRecipeCreation
 
 def filter_recipes(request):
     context = {}
 
     recipe_prepping_time_in_minutes = get_recipe_time_minutes(request)
+    recipe_prepping_time_in_hours = get_recipe_time_hours(request)
     recipe_authors = get_recipe_authors(request)
-    recipe_temperature = get_cooking_temp(request)
+    
 
     
     if request.method == "POST":
         all_data = []
 
         prep_time_in_minutes = request.POST.get('prep_time_in_minutes')
+        prep_time_in_hours = request.POST.get('prep_time_in_hours')
         recipe_author = request.POST.get('recipe_author')
-        recipe_temp = request.POST.get('cooking_temp')
+        
 
         #mintemp = request.POST.getlist("min_temp")
         #maxtemp = request.POST.getlist("max_temp")
@@ -100,7 +103,7 @@ def filter_recipes(request):
                 
 
 
-                    print(f"This is the objects {i} {i.cooking_temp}")
+                    
                 context['tempcheck'] = temp
             
 
@@ -116,15 +119,19 @@ def filter_recipes(request):
         if prep_time_in_minutes:
             all_recipes = RecipeData.objects.filter(prep_time_in_minutes=prep_time_in_minutes)
             all_data.extend(all_recipes)
+        
+        if prep_time_in_hours:
+            all_recipes = RecipeData.objects.filter(prep_time_in_hours=prep_time_in_hours)
+            all_data.extend(all_recipes)
 
         
         filter_type = request.POST.getlist("filterItem")
         if filter_type:
-            print("Success")
+            
             for option in filter_type:
                 
                 all_recipes = RecipeData.objects.filter(recipe_type=option)
-                print(all_recipes)
+                
                 all_data.extend(all_recipes)
 
         
@@ -135,6 +142,10 @@ def filter_recipes(request):
     context['recipe_authors'] = recipe_authors
 
     context['recipe_prepping_time_in_minutes'] = recipe_prepping_time_in_minutes
+
+    context['recipe_prepping_time_in_hours'] = recipe_prepping_time_in_hours
+    
+    
 
     
     context['recipes'] = RecipeData.objects.all()
@@ -153,6 +164,10 @@ def get_recipe_time_minutes(request):
     recipe_prepping_time_in_minutes = RecipeData.objects.values_list('prep_time_in_minutes', flat=True).distinct()
 
     return recipe_prepping_time_in_minutes
+
+def get_recipe_time_hours(request):
+    recipe_prepping_times_in_hours = RecipeData.objects.values_list('prep_time_in_hours', flat=True).distinct()
+    return recipe_prepping_times_in_hours
     
 
 def get_cooking_temp(request):
@@ -198,4 +213,141 @@ def forums(request):
 
 def share(request):
     return render(request, 'sharing.html')
+
+def create_recipe(request):
+    return render(request,"recipecreation.html")
+
+
+from .models import SavedRecipe
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import SavedRecipe
+
+def current_recipe(request):
+    
+    saved_recipes = SavedRecipe.objects.all()
+
+    if request.method == "POST":
+        
+        recipe_id_to_delete = request.POST.get('delete_recipe_id')
+        if recipe_id_to_delete:
+            
+            recipe_to_delete = get_object_or_404(SavedRecipe, id=recipe_id_to_delete)
+            recipe_to_delete.delete()
+
+            
+            return redirect('currentrecipe')  
+
+        
+        recipe_name = request.POST.get('recipe_name')
+        recipe_author = request.POST.get('recipe_author')
+        recipe_type = request.POST.get('recipe_type')
+        ingredients_needed = request.POST.get('ingredients_needed')
+        recipe_instructions = request.POST.get('recipe_instructions')
+
+        
+        cooking_temp = request.POST.get('cooking_temp')
+        if cooking_temp == '' or cooking_temp is None:
+            cooking_temp = None
+        else:
+            try:
+                cooking_temp = int(cooking_temp)
+            except ValueError:
+                cooking_temp = None
+
+        prep_time_in_minutes = request.POST.get('prep_time_in_minutes')
+        if prep_time_in_minutes == '' or prep_time_in_minutes is None:
+            prep_time_in_minutes = None
+        else:
+            try:
+                prep_time_in_minutes = int(prep_time_in_minutes)
+            except ValueError:
+                prep_time_in_minutes = None
+
+        prep_time_in_hours = request.POST.get('prep_time_in_hours')
+        if prep_time_in_hours == '' or prep_time_in_hours is None:
+            prep_time_in_hours = None
+        else:
+            try:
+                prep_time_in_hours = int(prep_time_in_hours)
+            except ValueError:
+                prep_time_in_hours = None
+
+        servings = request.POST.get('servings')
+        if servings == '' or servings is None:
+            servings = None
+        else:
+            try:
+                servings = int(servings)
+            except ValueError:
+                servings = None
+
+        
+        saved_recipe = SavedRecipe(
+            recipe_name=recipe_name,
+            recipe_author=recipe_author,
+            recipe_type=recipe_type,
+            ingredients_needed=ingredients_needed,
+            recipe_instructions=recipe_instructions,
+            cooking_temp=cooking_temp,
+            prep_time_in_minutes=prep_time_in_minutes,
+            prep_time_in_hours=prep_time_in_hours,
+            servings=servings,
+        )
+        saved_recipe.save()
+
+        
+        saved_recipes = SavedRecipe.objects.all()
+
+    return render(request, "currentrecipe.html", {'saved_recipes': saved_recipes})
+
+
+
+
+
+
+
+
+from django.shortcuts import render
+from .forms import NewRecipeCreation
+from .models import RecipeData
+
+def create_recipe_form(request):
+    print(request.method)
+    if request.method == 'POST':
+        form = NewRecipeCreation(request.POST)
+        if form.is_valid():
+            # Extract the cleaned data from the form
+            recipe_author = form.cleaned_data["recipe_author"]
+            recipe_name = form.cleaned_data["recipe_name"]
+            recipe_type = form.cleaned_data["recipe_type"]
+            ingredients_needed = form.cleaned_data["ingredients_needed"]
+            recipe_instructions = form.cleaned_data["recipe_instructions"]
+            prep_time_in_minutes = form.cleaned_data.get("prep_time_in_minutes")
+            prep_time_in_hours = form.cleaned_data.get("prep_time_in_hours")
+            cooking_temp = form.cleaned_data.get("cooking_temp")
+            servings = form.cleaned_data.get("servings")
+            
+            # Create a new RecipeData instance and populate it with form data
+            new_recipe = RecipeData(
+                recipe_author=recipe_author,
+                recipe_name=recipe_name,
+                recipe_type=recipe_type,
+                ingredients_needed=ingredients_needed,
+                recipe_instructions=recipe_instructions,
+                prep_time_in_minutes=prep_time_in_minutes,
+                prep_time_in_hours=prep_time_in_hours,
+                cooking_temp=cooking_temp,
+                servings=servings
+            )
+            
+            
+            new_recipe.save()
+
+            
+
+    else:
+        form = NewRecipeCreation()
+
+    return render(request, "recipecreation.html", {"form": form})
 

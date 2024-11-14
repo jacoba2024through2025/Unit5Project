@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Saved Recipes</h2>
+    
+    {% if saved_recipes %}
+        <div>
+            {% for recipe in saved_recipes %}
+                <div class="saved-recipe">
+                    <h3>{{ recipe.recipe_name }}</h3>
+                    <p><strong>Author:</strong> {{ recipe.recipe_author }}</p>
+                    <p><strong>Method:</strong> {{ recipe.recipe_type }}</p>
+                    <p><strong>Ingredients:</strong> {{ recipe.ingredients_needed }}</p>
+                    <p><strong>Instructions:</strong> {{ recipe.recipe_instructions }}</p>
+                    <p><strong>Cooking Temperature:</strong> {{ recipe.cooking_temp }}°F</p>
+                    <p><strong>Prep Time:</strong> 
+                        {% if recipe.prep_time_in_hours %}
+                            {{ recipe.prep_time_in_hours }} hours 
+                        {% endif %}
+                        {% if recipe.prep_time_in_minutes %}
+                            {{ recipe.prep_time_in_minutes }} minutes 
+                        {% endif %}
+                    </p>
+                    <p><strong>Servings:</strong> {{ recipe.servings }}</p>
+                    
+                    
+                    <form method="POST" action="{% url 'currentrecipe' %}">
+                        {% csrf_token %}
+                        
+                        <input type="hidden" name="delete_recipe_id" value="{{ recipe.id }}">
+                        <button type="submit" class="form-buttons form-buttons-filter">
+                            <i class="fa-solid fa-delete-left"></i>
+                            Delete From Cart
+                        </button>
+                    </form>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No recipes saved yet.</p>
+    {% endif %}
+{% endblock %}
+
