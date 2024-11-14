@@ -30,30 +30,94 @@
         <label class="label-form-styling" for="skillet">Skillet</label>
     </p>
     <button type="submit" class="form-buttons form-buttons-filter">
-        Submit
+        Search By Cooking Method
 
     </button>
 </form>
 {#Filter by recipe author#}
-<select name="recipe_author" id="recipe_author" class="form-background">
-    <option value="">--Select Author--</option>
-    {% for author in recipe_authors %}
-        <option value="{{ author }}">{{ author }}</option>
-    {% endfor %}
-    
-</select>
+
+<form method="POST" class="form-background">
+    {% csrf_token %}
+    <select name="recipe_author" id="recipe_author">
+        <option value="">--Select Author--</option>
+        {% for author in recipe_authors %}
+            <option value="{{ author }}" {% if selected_author == author %} selected {% endif %}>
+                {{ author }}
+            </option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="form-buttons form-buttons-filter">
+        Search By Recipe Author
+    </button>
+</form>
+
+{% if selected_author %}
+    <p>You selected: {{ selected_author }}</p>
+{% endif %}
+
+{# Filter by cooking temperature (cooking_temp) #}
+<form method="POST" class="form-background">
+    {% csrf_token %}
+    <p>
+        <label for="min_temp">Minimum Cooking Temperature (°F):</label>
+        <input type="number" name="min_temp" id="min_temp" placeholder="Enter min temp">
+    </p>
+    <p>
+        <label for="max_temp">Maximum Cooking Temperature (°F):</label>
+        <input type="number" name="max_temp" id="max_temp" placeholder="Enter max temp">
+    </p>
+    <button type="submit" class="form-buttons form-buttons-filter">Filter by Temperature</button>
+</form>
+
+<form method="POST" class="form-background">
+    {% csrf_token %}
+    <select name="prep_time_in_minutes" id="prep_time_in_minutes">
+        <option value="">--Select Recipes With Minute Prep Times--</option>
+        {% for time in prep_time_in_minutes %}
+            <option value="{{ time }}" {% if selected_author == time %} selected {% endif %}>
+                {{ time }}
+            </option>
+        {% endfor %}
+    </select>
+    <button type="submit" class="form-buttons form-buttons-filter">
+        Search By Minutes To Prep
+    </button>
+</form>
+
+
+
+
+
 
 
 <div class="output-display form-background">
-    {% for recipe in result %}
-        <p class="result-fonttype">Recipe Name:{{ recipe.recipe_name }}</p>
-        <p class="result-fonttype">Method:{{ recipe.recipe_type }}</p>
-        <p class="result-fonttype">Author:{{ recipe.recipe_author }}</p>
-        <p class="result-fonttype">Ingredients:{{ recipe.ingredients_needed }}</p>
-        <p class="result-fonttype">Instructions:{{ recipe.recipe_instructions}}</p>
-    {% empty %}
-        <p>No recipes found.</p>
-    {% endfor %}
+    {% if result|length > 0 %}
+        {% for recipe in result %}
+            <p class="result-fonttype">Recipe Name:{{ recipe.recipe_name }}</p>
+            <p class="result-fonttype">Method:{{ recipe.recipe_type }}</p>
+            <p class="result-fonttype">Temperature:{{ recipe.cooking_temp }}</p>
+            <p class="result-fonttype">Author:{{ recipe.recipe_author }}</p>
+            <p class="result-fonttype">Ingredients:{{ recipe.ingredients_needed }}</p>
+            <p class="result-fonttype">Instructions:{{ recipe.recipe_instructions}}</p>
+            <button class="form-buttons form-buttons-filter">Add Recipe</button>
+        {% empty %}
+            <p>1No recipes found.</p>
+            <p>{{result}}</p>
+        {% endfor %}
+    {% endif%}
+    {% if tempcheck != None %}
+        {% for recipe in tempcheck %}
+            <p class="result-fonttype">Recipe Name:{{ recipe.recipe_name }}</p>
+            <p class="result-fonttype">Method:{{ recipe.recipe_type }}</p>
+            <p class="result-fonttype">Temperature:{{ recipe.cooking_temp }}</p>
+            <p class="result-fonttype">Author:{{ recipe.recipe_author }}</p>
+            <p class="result-fonttype">Ingredients:{{ recipe.ingredients_needed }}</p>
+            <p class="result-fonttype">Instructions:{{ recipe.recipe_instructions}}</p>
+            <button class="form-buttons form-buttons-filter">Add Recipe</button>
+        {% empty %}
+            <p>2No recipes found.</p>
+        {% endfor %}
+    {% endif%}
 
     
 </div>
