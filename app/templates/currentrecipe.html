@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Saved Recipes</h2>
+    <h2 class="saved-recipe-header">
+        <i class="fa-solid fa-bars-staggered"></i>
+        Saved Recipes
+    </h2>
     
     {% if saved_recipes %}
         <div>
             {% for recipe in saved_recipes %}
                 <div class="saved-recipe">
-                    <h3>{{ recipe.recipe_name }}</h3>
-                    <p><strong>Author:</strong> {{ recipe.recipe_author }}</p>
-                    <p><strong>Method:</strong> {{ recipe.recipe_type }}</p>
-                    <p><strong>Ingredients:</strong> {{ recipe.ingredients_needed }}</p>
-                    <p><strong>Instructions:</strong> {{ recipe.recipe_instructions }}</p>
-                    <p><strong>Cooking Temperature:</strong> {{ recipe.cooking_temp }}°F</p>
-                    <p><strong>Prep Time:</strong> 
+                    <h3 class="returned-header">{{ recipe.recipe_name }}</h3>
+                    <p class="returned-para">Author: {{ recipe.recipe_author }}</p>
+                    <p class="returned-para">Method: {{ recipe.recipe_type }}</p>
+                    <p class="returned-para">Ingredients: {{ recipe.ingredients_needed }}</p>
+                    <p class="returned-para">Instructions: {{ recipe.recipe_instructions }}</p>
+                    <p class="returned-para">Cooking Temperature: {{ recipe.cooking_temp }}°F</p>
+                    <p class="returned-para">Prep Time: 
                         {% if recipe.prep_time_in_hours %}
                             {{ recipe.prep_time_in_hours }} hours 
                         {% endif %}
@@ -21,7 +24,7 @@
                             {{ recipe.prep_time_in_minutes }} minutes 
                         {% endif %}
                     </p>
-                    <p><strong>Servings:</strong> {{ recipe.servings }}</p>
+                    <p class="returned-para">Servings: {{ recipe.servings }}</p>
                     
                     
                     <form method="POST" action="{% url 'currentrecipe' %}">
@@ -38,7 +41,10 @@
             {% endfor %}
         </div>
     {% else %}
-        <p>No recipes saved yet.</p>
+        <p class="no-show-recipes">
+            <i class="fa-solid fa-filter-circle-xmark"></i>
+            Whoops! We could not find any recipes saved! Start by searching or creating your own.
+        </p>
     {% endif %}
 {% endblock %}
 

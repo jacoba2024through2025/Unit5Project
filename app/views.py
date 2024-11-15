@@ -150,7 +150,12 @@ def filter_recipes(request):
     
     context['recipes'] = RecipeData.objects.all()
 
+
+
     return render(request, 'filterrecipes.html', context)
+
+
+
 
 def get_recipe_authors(request):
     
@@ -206,7 +211,32 @@ def recipe_view(request):
 
 
 def built_in_choices(request):
-    return render(request, 'builtinchoices.html')
+    context = {}
+
+    all_data = []
+
+    filter_type = request.POST.get("search_bar")
+    if filter_type:
+        # Start with an empty queryset
+        all_data = RecipeData.objects.none()
+
+        # Loop through the words and build a filter chain
+        for option in filter_type.split():
+            all_data = all_data | RecipeData.objects.filter(ingredients_needed__icontains=option)
+
+    context['result'] = all_data
+
+
+
+        
+            
+        
+    #print(f"All Recipes: {all_recipes}")
+    print(f"All Data: {all_data}")
+    context['result'] = all_data
+
+    
+    return render(request, 'builtinchoices.html', context)
 
 def forums(request):
     return render(request,'forums.html')

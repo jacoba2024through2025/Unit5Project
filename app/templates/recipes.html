@@ -10,38 +10,46 @@
                 {#<li><a href="{% url 'recipe_detail' recipes_name=recipe %}">{{ recipe }}</a></li>#}
             {#{% endfor %}#}
         {#</ul>#}
-
-        <img src="{% static 'recipe1.jpg' %}" alt="Image of Ham Sliders">
-
-        <div class="button-div">
-            <button type="button" class="form-buttons form-1-home-button">
-                <a href="{% url 'builtinchoices' %}" class="form-1-anchor-style">
-                    Filter Recipes
-                </a>
-                <i class="fa-brands fa-searchengin"></i>
-            </button>
-
-        </div>
-
-        <div class="button-div">
-            <button type="button" class="form-buttons form-2-home-button">
-                <a href="{% url 'filterrecipes' %}" class="form-2-anchor-style">
-                    Built-in Choices
-                </a>
-                <i class="fa-regular fa-square-check"></i>
-            </button>
-
-        </div>
-
-        <div class="button-div">
-            <button type="button" class="form-buttons">
-            
-                <a href="{% url 'recipecreation' %}" class="form-1-anchor-style">
-                    Create Your Own Recipe!
-                </a>
-                <i class="fa-solid fa-plus"></i>
-            </button>
         
+
+        <div class="logos">
+            <div class="logos-slide">
+                <img src="{% static 'recipe2.jpg' %}" alt="Image of Beef Stroganoff" class="image-change">
+
+                <img src="{% static 'recipe1.jpg' %}" alt="Image of Ham Sliders" class="image-change">
+
+            </div>
+
+        </div>
+        
+
+        <div class="button-container">
+            <div class="button-div">
+                <button type="button" class="form-buttons form-1-home-button">
+                    <a href="{% url 'builtinchoices' %}" class="form-1-anchor-style">
+                        Filter Recipes
+                    </a>
+                    <i class="fa-brands fa-searchengin"></i>
+                </button>
+            </div>
+    
+            <div class="button-div">
+                <button type="button" class="form-buttons form-2-home-button">
+                    <a href="{% url 'filterrecipes' %}" class="form-2-anchor-style">
+                        Built-in Choices
+                    </a>
+                    <i class="fa-regular fa-square-check"></i>
+                </button>
+            </div>
+    
+            <div class="button-div">
+                <button type="button" class="form-buttons">
+                    <a href="{% url 'recipecreation' %}" class="form-1-anchor-style">
+                        Create Your Own Recipe!
+                    </a>
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
         </div>
         
         

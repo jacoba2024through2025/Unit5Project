@@ -2,6 +2,50 @@
 
 {% block content %}
 
-<h1>This is the page for the search bar</h1>
+<form method="POST" class="form-background">
+    {% csrf_token %}
+    <p>
+        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <input type="text" name="search_bar" id="search_bar" >
+    </p>
+    
+</form>
+
+<div class="output-display form-background">
+    {% if result %}
+        
+        {% for recipe in result %}
+            {{recipe}}
+            <p class="result-fonttype">Recipe Name: {{ recipe.recipe_name }}</p>
+            <p class="result-fonttype">Author: {{ recipe.recipe_author }}</p>
+            <p class="result-fonttype">Method: {{ recipe.recipe_type }}</p>
+            <p class="result-fonttype">Temperature: {{ recipe.cooking_temp }}</p>
+            <p class="result-fonttype">Ingredients: {{ recipe.ingredients_needed }}</p>
+            <p class="result-fonttype">Instructions: {{ recipe.recipe_instructions }}</p>
+            
+            <form method="POST" action="{% url 'currentrecipe' %}">
+                {% csrf_token %}
+                <input type="hidden" name="recipe_name" value="{{ recipe.recipe_name }}">
+                <input type="hidden" name="recipe_author" value="{{ recipe.recipe_author }}">
+                <input type="hidden" name="recipe_type" value="{{ recipe.recipe_type }}">
+                <input type="hidden" name="ingredients_needed" value="{{ recipe.ingredients_needed }}">
+                <input type="hidden" name="recipe_instructions" value="{{ recipe.recipe_instructions }}">
+                <input type="hidden" name="cooking_temp" value="{{ recipe.cooking_temp }}">
+                <input type="hidden" name="prep_time_in_minutes" value="{{ recipe.prep_time_in_minutes }}">
+                <input type="hidden" name="prep_time_in_hours" value="{{ recipe.prep_time_in_hours }}">
+                <input type="hidden" name="servings" value="{{ recipe.servings }}">
+
+                <button type="submit" class="form-buttons form-buttons-filter">
+                    Add Recipe To Cart
+                </button>
+            </form>
+        {% empty %}
+            <p>No recipes found matching your search criteria.</p>
+        {% endfor %}
+    {% endif %}
+    
+
+    
+</div>
 
 {% endblock %}

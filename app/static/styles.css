@@ -155,10 +155,7 @@ header {
     opacity: 1
 }
 
-.button-div {
-    background: blue;
-    display: inline;
-}
+
 
 /*.form-1-home-button {
     margin-left: 20em;
@@ -333,7 +330,106 @@ header {
     font-family: sans-serif;
 }
 
+/*Logo animations controller*/
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%)
+    }
+}
+
+.logos-slide {
+    white-space: nowrap;
+    animation: 10s slide infinite linear;
+    border-radius: 10%;
+}
+
+.logos {
+    overflow: hidden;
+    padding: 60px 0 0 0;
+    
+}
+
+.logos-slide img {
+    height: 20vh;
+    margin: 0 40px;
+
+}
+
+.button-container {
+    display: flex;                     
+    justify-content: center;           
+    align-items: center;               
+    height: 50vh;                     
+    flex-direction: column;            
+    gap: 20px;                         
+    text-align: center;
+    background: white; 
+    box-shadow: .50em .50em 1em;
+                   
+}
+
+.image-change {
+    background: white;
+    box-shadow: 2em 2em 2em;
+}
 
 
+.nav-container {
+    width: 100vw;     
+    
+}
 
+.font-color {
+    color: white;
+}
 
+.saved-recipe-header {
+    display: table;            /* Make it behave like a table */
+    margin: 0 auto;            /* Center horizontally with auto margins */
+    font-size: 2rem;
+    background-color: rgb(210,45,0,255);
+    box-shadow: .50em .50em 1em black;
+    padding: 20px;
+    text-align: center;
+    border-radius: 3%;
+    font-family: sans-serif;
+    color: white;
+    
+ 
+            
+
+}
+
+.no-show-recipes {
+    margin: 0 auto;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 30vh;
+    color: rgb(210,45,0,255);
+    box-shadow: .50em .50em 1em black;
+    font-size:2em;
+    background: white;
+    display: table;
+    border-radius: 5%;
+    font-weight: 800;
+}
+
+.returned-header {
+    color: rgb(210,45,0,255);
+    font-family: sans-serif;
+
+}
+
+.returned-para {
+    color: rgb(210,45,0,255);
+    font-family: sans-serif;
+    
+}
+
+.saved-recipe {
+    background: white;
+    box-shadow: .50em .50em 1em black;
+}
