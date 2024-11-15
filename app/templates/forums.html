@@ -1,7 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
+<form method="POST" class="form-background">
+    {% csrf_token %}
+    
+    
+    <div class="expand">
+        <div class="rating-css">
+            <div class="star-icon">
+                <input type="radio" name="rating" id="rating1" value="5" {% if recipe.rating == 5 %} checked {% endif %}>
+                <label for="rating1" class="fa fa-star"></label>
+    
+                <input type="radio" name="rating" id="rating2" value="4" {% if recipe.rating == 4 %} checked {% endif %}>
+                <label for="rating2" class="fa fa-star"></label>
+    
+                <input type="radio" name="rating" id="rating3" value="3" {% if recipe.rating == 3 %} checked {% endif %}>
+                <label for="rating3" class="fa fa-star"></label>
+    
+                <input type="radio" name="rating" id="rating4" value="2" {% if recipe.rating == 2 %} checked {% endif %}>
+                <label for="rating4" class="fa fa-star"></label>
+    
+                <input type="radio" name="rating" id="rating5" value="1" {% if recipe.rating == 1%} checked {% endif %}>
+                <label for="rating5" class="fa fa-star"></label>
+            </div>
 
-<h1>This is contents for forums</h1>
 
+            
+        </div>
+
+        <div class="custom-div">
+            <textarea class="custom-text-area">
+                
+            </textarea>
+
+        </div>
+    </div>
+    
+
+    
+    
+    <select name="recipe_author" id="recipe_author">
+        <option value="">--Select Author of Saved Recipe--</option>
+        {% for author in recipe_authors %}
+            <option value="{{ author }}" {% if selected_author == author %} selected {% endif %}>
+                {{ author }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="form-buttons form-buttons-filter">
+        Submit Rating
+    </button>
+
+</form>
 {% endblock %}
+
+
+

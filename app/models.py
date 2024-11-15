@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class SavedRecipe(models.Model):
     recipe_author = models.CharField(max_length=75)
@@ -11,6 +12,13 @@ class SavedRecipe(models.Model):
     prep_time_in_hours = models.IntegerField(null=True, blank=True)
     cooking_temp = models.IntegerField(null=True, blank=True)
     servings = models.IntegerField(null=True, blank= True)
+    rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        null=True,
+        blank=True
+        
+    )
+    feedback = models.CharField(max_length=3000, null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.recipe_name} by {self.recipe_author}"

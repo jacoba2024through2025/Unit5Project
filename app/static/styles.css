@@ -68,7 +68,7 @@ header {
 }
 
 .logo-properties {
-    width: 11em;
+    width: 12em;
 }
 
 .nav-button-style {
@@ -261,8 +261,8 @@ header {
 .form-background {
     margin-top: 2em;
     background: white;
-    margin-right: 65em;
-    margin-left: 2em;
+    
+    
     border-radius: 1em;
     box-shadow: .50em .50em 1em;
     
@@ -432,4 +432,57 @@ header {
 .saved-recipe {
     background: white;
     box-shadow: .50em .50em 1em black;
+}
+/*Forms start*/
+.rating-css {
+    height: 250px;
+    width: 400px;
+    background: black;
+    border: 4px solid rgb(210,45,0,255);
+    padding: 20px;
+}
+
+.star-icon {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.rating-css div {
+    color: #fcb036;
+    font-size: 2em;
+}
+
+.rating-css input {
+    display: none;
+}
+
+/* Make all stars gray initially */
+.rating-css input + label {
+    color: gray;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #ffe400;
+}
+
+/* Change the color of the selected star to yellow */
+.rating-css input:checked + label {
+    color: #fcb036;
+}
+
+/* When one star is selected, change all previous stars to yellow as well */
+.rating-css input:checked ~ input + label {
+    color: #fcb036;
+}
+
+.expand {
+    display: flex;
+}
+
+.custom-text-area {
+    max-height: 42vh;
+    max-width: 67vw;
+    
+}
+
+.custom-div {
+    box-shadow: 1em 1em 1em black;
 }

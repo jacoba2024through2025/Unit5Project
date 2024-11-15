@@ -26,7 +26,8 @@ urlpatterns = [
     path('builtinchoices/', views.built_in_choices, name='builtinchoices'),
     path('recipecreation/', views.create_recipe_form, name="recipecreation"),
     path('currentrecipe/', views.current_recipe, name="currentrecipe"),
-    path('forums', views.forums, name='forums'),
+    path('forums/', views.forums, name='forums'),
+
     path('share',views.share, name='share'),
     
     

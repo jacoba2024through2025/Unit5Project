@@ -239,7 +239,35 @@ def built_in_choices(request):
     return render(request, 'builtinchoices.html', context)
 
 def forums(request):
-    return render(request,'forums.html')
+    if request.method == 'POST':
+        
+        selected_author = request.POST.get('recipe_author')
+        rating = request.POST.get('rating')
+
+        if selected_author and rating:
+            try:
+                
+                rating = int(rating)
+
+                
+                recipes = SavedRecipe.objects.filter(recipe_author=selected_author)
+
+                
+                for recipe in recipes:
+                    recipe.rating = rating
+                    recipe.save()
+
+                
+                
+            except ValueError:
+                return HttpResponse("Invalid rating value.", status=400)
+
+    
+    recipe_authors = SavedRecipe.objects.values_list('recipe_author', flat=True).distinct()
+    return render(request, 'forums.html', {
+        'recipe_authors': recipe_authors,
+        'selected_author': selected_author if 'selected_author' in locals() else '',
+    })
 
 def share(request):
     return render(request, 'sharing.html')
