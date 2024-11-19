@@ -2,6 +2,30 @@
 
 {% block content %}
 
-<h1>This is the content for sharing recipes</h1>
+<h1 class="header-style-page">About Student Kitchen:</h1>
+
+<p class="paragraph-style">Student Kitchen was created with the idea that cooking can be simple, easy, and accessible for any student or person in need of a thoughtful way to search/create recipes.</p>
+<h3 class="header-style-page">All Pages:</h3>
+<p class="paragraph-style">No matter the page you are currently on, you will have access to all navigation features of Student Kitchen.
+<h2 class="header-style-page-separate main-header">Sections:</p>
+<h3 class="header-style-page">Home Page</h3>
+<p class="paragraph-style">From the home page, you have access to three main buttons: The "Filter Recipes" button, the "Built-in Choices" button, and the "Create Your Own Recipe" button.
+<h3 class="header-style-page">Filter Recipes</h3>
+<p class="paragraph-style">Upon clicking the "Filter Recipes" button, the user will be redirected to a search bar where they can search for recipes that are currently listed in the database by their ingredients. When that is done correctly, the user will discover that the recipes that fit their search criteria will be populated.</p>
+<h3 class="header-style-page">Built-in Choices</h3>
+<p class="paragraph-style">To make user experience easier, we have provided the following premade options:  1. Search by cooking method, which is a checkbox list, allows the user to select all options for cooking methods like crock pot recipes, microwave, and more. 2. The user has the option to search by recipe authors currently loaded into the database. Doing so will display all information for the recipe. 3. The user can give a minimum time and maximum time for temperature to fit their recipe needs. 4/5. The user can select from all times in the database that have a certain time, whether it be in hours or minutes.</p>
+<h3 class="header-style-page">Creating Recipes</h3>
+<p class="paragraph-style">If the user chooses to click the "Create Your Own Recipe!" button, the user will be redirected to a new page with a form where they can provide all the following information for a recipe: The recipe author, presumably the user's name, the name of the recipe, the cooking method for that recipe, the ingredients needed for that recipe, the instructions for that recipe, prep time in minutes/hours, and the temperature for that recipe. A submission button handles the data being stored in the RecipeData database. Whenever the user attempts to search up a recipe, their entry will now appear as one of the search results.</p>
+<h3 class="header-style-page">Filter Recipes/Built-in Choices Continued:</h3>
+<p class="paragraph-style">After populating a recipe, the user will gain the ability to add a recipe to their cart. More information about the cart and how it works will follow on this page.</p>
+<h3 class="header-style-page">Current Recipes/Cart System</h3>
+<p class="paragraph-style">After the user selects "Add Recipe to Cart" in either the "Filter Recipes" or the "Built-in Choices" page, the user will be redirected to a separate page containing their saved recipes. From selecting the button previously mentioned, the user has saved recipe information to a database called "SavedRecipe," which is almost identical to the "RecipeData" database that stores all the recipes that the user can filter through. After saving, all recipes the user has saved from clicking "Add Recipe to Cart" will appear. The user has more options from there.</h3>
+<h3 class="header-style-page-separate main-header">Cart System Options</h3>
+<h4 class="header-style-page">Deleting Saved Recipes</h4>
+<p class="paragraph-style">If the user does not want a certain recipe to be displayed on the page anymore, they can click the "Delete Recipe" button, and it will remove both the appearance of the recipe information on the webpage and the actual data for it in the "SavedRecipe" database. If the user desires to have more recipes appear on the page after removing all recipes, the user will have to go back to adding more recipes from our previously mentioned search options.</p>
+<h4 class="header-style-page">Giving a Recipe a 1-5 Star Rating and Leaving Feedback</h4>
+<p class="paragraph-style">From the Saved Recipes page, you can click the "Rate This Recipe" button, and it will take you to the "Forums page", where you can give a rating 1-5, and leave a comment. Both the rating that the user gives and the feedback they entered previously will be displayed alongside the recipe information for the person they were giving a rating to. For example, the user gives a "5" star rating to a user named "John Doe" and types "This recipe was helpful!" in the textbox field. When the user presses "Submit Rating", both the field for the 5 star rating and the comment they gave will be added as fields in the "SavedRecipe" database. The basic information for the recipe gave a rating for will then displayed upon submission: Recipe Author, the name of the recipe, the cooking method they used, time required, and temperature, if any. With the basic information will now be two new fields: Rating and Feedback.</p>
+
+    
 
 {% endblock %}

@@ -6,6 +6,8 @@
     
 }
 
+
+
 body {
     background-color: gainsboro;
 }
@@ -33,14 +35,18 @@ li, a, button {
 header {
     
     
-    box-shadow: .50em .50em 1em;
-    padding: 30px 10%;
+    box-shadow: 1em 1em 1em;
+    padding-left: 10vw;
     background-color: white;
+    margin-bottom: 0.5vw;
 }
+
+
+
 
 .link-container {
     display: flex;
-    gap: 5em;
+    
     align-content: center;
     
 
@@ -57,9 +63,9 @@ header {
 }
 
 .moving-links-div {
-    margin-top: 4em;
+    margin-top: 15vh;
     display: flex;
-    gap: 7em;
+    gap: 20vw;
 }
 
 .search-div {
@@ -71,10 +77,7 @@ header {
     width: 12em;
 }
 
-.nav-button-style {
-    display: flex;
-    
-}
+
 
 .pill {
     font-family: sans-serif;
@@ -349,12 +352,15 @@ header {
 .logos {
     overflow: hidden;
     padding: 60px 0 0 0;
+    background: rgb(210,45,0,255);
+    opacity: 80%;
     
 }
 
 .logos-slide img {
-    height: 20vh;
+    height: 30vh;
     margin: 0 40px;
+    margin-bottom: 2vh;
 
 }
 
@@ -362,18 +368,23 @@ header {
     display: flex;                     
     justify-content: center;           
     align-items: center;               
-    height: 50vh;                     
+    height: 35vh;                     
     flex-direction: column;            
-    gap: 20px;                         
+    gap: 2vh;                         
     text-align: center;
     background: white; 
     box-shadow: .50em .50em 1em;
+    margin-top: 0.5vw;
+    box-shadow: 5em 20em 1em;
+    
                    
 }
 
 .image-change {
     background: white;
     box-shadow: 2em 2em 2em;
+    border: 5px solid #fcb036;
+    border-style: groove;
 }
 
 
@@ -485,4 +496,196 @@ header {
 
 .custom-div {
     box-shadow: 1em 1em 1em black;
+}
+.header-style-page {
+    color: rgb(210,45,0,255);
+    font-family: sans-serif;
+    margin: 0 auto;
+    background: black;
+    border: 3px solid #fcb036;
+    border-radius: 3%;
+    display: table;
+}
+
+.header-style-page-separate {
+    color: #fcb036;
+    font-family: sans-serif;
+    margin: 0 auto;
+    background: black;
+    border: 3px solid #fcb036;
+    border-radius: 3%;
+    display: table;
+}
+
+.paragraph-style {
+    text-align: center;
+    font-family: sans-serif;
+    color: rgb(210,45,0,255);
+    text-shadow: 0.5px 1px black;
+}
+
+.main-header {
+    margin-bottom: 50px;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+}
+
+.search-type {
+    font-family: sans-serif;
+    color: rgb(210,45,0,255);
+    background: white;
+    display: table;
+    margin: 0 auto;
+    border: 3px solid rgb(210,45,0,255);
+    border-style: double;
+    border-radius: 3%;
+}
+
+.form-background-style {
+    display: table;
+    margin: 0 auto;
+}
+
+/* General form container */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: .50em .50em 1em black;
+}
+
+.header-styling-2 {
+    text-align: center;
+    color: rgb(210,45,0,255);
+    font-family: sans-serif;
+}
+
+/* Styling form elements */
+.recipe-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style each input field */
+.form-group p {
+    margin-bottom: 15px;
+    color: rgb(210,45,0,255);
+    font-family: sans-serif;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    outline: none;
+}
+
+/* Style for the submit button */
+.submit-btn {
+    padding: 10px 20px;
+    background-color: rgb(210,45,0,255);
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #fcb036;
+    
+}
+
+.feedback-display {
+    background: rgb(210,45,0,255);
+}
+
+.feedback-styling {
+    color: white;
+    font-family: sans-serif
+}
+
+.feedback-para {
+    color: white;
+    font-family: sans-serif;
+}
+
+.linked-labels {
+    margin-left: 10vh;
+    display: flex;
+    gap: 35vh
+}
+
+.search-input {
+    border: 3px solid rgb(210,45,0,255);
+    appearance: none;
+    width: 65vw;
+    height: 10vh;
+    border-radius: 3%;
+    border-style:double;
+
+    
+}
+
+.icon-option {
+    background: white;
+    padding-right: 1.5vw;
+    padding-left: 1.5vw;
+    padding-bottom: 1.7vw;
+    padding-top: 1.4vw;
+    border: 3px solid rgb(210,45,0,255);
+    border-style: double;
+}
+
+.icon-option:hover {
+    background: rgb(210,45,0,255);
+    
+}
+
+.form-buttons-help {
+
+}
+
+
+
+.form-buttons-filter-help {
+    margin-left: 4em;
+}
+
+.unordered-style {
+    text-align: center;
+    font-family: sans-serif;
+    color: rgb(210,45,0,255);
+    
+
+}
+
+.help-header {
+    text-align: center;
+    font-family: sans-serif;
+    color: rgb(210,45,0,255)
+}
+
+.list-form {
+    background: white;
+    margin-left: 16vw;
+    margin-right: 16vw;
+    border-radius: 3%;
 }

@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h2 class="saved-recipe-header">
+    <i class="fa-solid fa-users icon-styling"></i>
+    Recipe Forums
+</h2>
 <form method="POST" class="form-background">
     {% csrf_token %}
-    
     
     <div class="expand">
         <div class="rating-css">
@@ -23,22 +26,13 @@
                 <input type="radio" name="rating" id="rating5" value="1" {% if recipe.rating == 1%} checked {% endif %}>
                 <label for="rating5" class="fa fa-star"></label>
             </div>
-
-
-            
         </div>
 
         <div class="custom-div">
-            <textarea class="custom-text-area">
-                
-            </textarea>
-
+            <textarea class="custom-text-area" name="feedback" placeholder="Enter your feedback here...">{{ recipe.feedback }}</textarea>
         </div>
     </div>
-    
 
-    
-    
     <select name="recipe_author" id="recipe_author">
         <option value="">--Select Author of Saved Recipe--</option>
         {% for author in recipe_authors %}
@@ -49,11 +43,20 @@
     </select>
 
     <button type="submit" class="form-buttons form-buttons-filter">
-        Submit Rating
+        Submit Rating and Feedback
     </button>
-
 </form>
+
+{% if recipe and recipe.feedback %}
+    <div class="feedback-display">
+        <h3 class="feedback-styling">Feedback for "{{ recipe.recipe_name }}":</h3>
+        <p class="feedback-para"> Rating: {{ recipe.rating }} Stars Out Of 5 </p>
+        <p class="feedback-para">User Feedback: {{ recipe.feedback }}</p>
+    </div>
+{% endif %}
 {% endblock %}
+
+
 
 
 

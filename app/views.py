@@ -217,10 +217,10 @@ def built_in_choices(request):
 
     filter_type = request.POST.get("search_bar")
     if filter_type:
-        # Start with an empty queryset
+        
         all_data = RecipeData.objects.none()
 
-        # Loop through the words and build a filter chain
+        
         for option in filter_type.split():
             all_data = all_data | RecipeData.objects.filter(ingredients_needed__icontains=option)
 
@@ -231,18 +231,18 @@ def built_in_choices(request):
         
             
         
-    #print(f"All Recipes: {all_recipes}")
+    
     print(f"All Data: {all_data}")
     context['result'] = all_data
 
     
     return render(request, 'builtinchoices.html', context)
 
-def forums(request):
+def forums(request, recipe_author):
     if request.method == 'POST':
-        
         selected_author = request.POST.get('recipe_author')
         rating = request.POST.get('rating')
+        feedback = request.POST.get('feedback')
 
         if selected_author and rating:
             try:
@@ -250,23 +250,39 @@ def forums(request):
                 rating = int(rating)
 
                 
-                recipes = SavedRecipe.objects.filter(recipe_author=selected_author)
+                recipe = SavedRecipe.objects.filter(recipe_author=selected_author).first()
 
-                
-                for recipe in recipes:
+                if recipe:
+                    
                     recipe.rating = rating
+                    if feedback:  
+                        recipe.feedback = feedback
                     recipe.save()
 
-                
-                
+                    
+                    return render(request, 'forums.html', {
+                        'recipe_authors': SavedRecipe.objects.values_list('recipe_author', flat=True).distinct(),
+                        'selected_author': selected_author,
+                        'recipe': recipe,  
+                    })
+
+                return HttpResponse("Recipe not found.", status=404)
+
             except ValueError:
                 return HttpResponse("Invalid rating value.", status=400)
 
     
+    selected_author = request.GET.get('recipe_author', '')
     recipe_authors = SavedRecipe.objects.values_list('recipe_author', flat=True).distinct()
+    
+    
+    recipe = None
+    recipe = SavedRecipe.objects.filter(recipe_author=recipe_author).first()
+
     return render(request, 'forums.html', {
         'recipe_authors': recipe_authors,
-        'selected_author': selected_author if 'selected_author' in locals() else '',
+        'selected_author': selected_author,
+        'recipe': recipe,  
     })
 
 def share(request):
@@ -370,12 +386,16 @@ from django.shortcuts import render
 from .forms import NewRecipeCreation
 from .models import RecipeData
 
+from django.shortcuts import render, redirect
+from django.contrib import messages  
+from .forms import NewRecipeCreation
+from .models import RecipeData
+
 def create_recipe_form(request):
-    print(request.method)
     if request.method == 'POST':
         form = NewRecipeCreation(request.POST)
         if form.is_valid():
-            # Extract the cleaned data from the form
+            
             recipe_author = form.cleaned_data["recipe_author"]
             recipe_name = form.cleaned_data["recipe_name"]
             recipe_type = form.cleaned_data["recipe_type"]
@@ -383,10 +403,10 @@ def create_recipe_form(request):
             recipe_instructions = form.cleaned_data["recipe_instructions"]
             prep_time_in_minutes = form.cleaned_data.get("prep_time_in_minutes")
             prep_time_in_hours = form.cleaned_data.get("prep_time_in_hours")
-            cooking_temp = form.cleaned_data.get("cooking_temp")
+            cooking_temp_in_fahrenheit = form.cleaned_data.get("Cooking_Temperature_In_Fahrenheit")
             servings = form.cleaned_data.get("servings")
+
             
-            # Create a new RecipeData instance and populate it with form data
             new_recipe = RecipeData(
                 recipe_author=recipe_author,
                 recipe_name=recipe_name,
@@ -395,17 +415,21 @@ def create_recipe_form(request):
                 recipe_instructions=recipe_instructions,
                 prep_time_in_minutes=prep_time_in_minutes,
                 prep_time_in_hours=prep_time_in_hours,
-                cooking_temp=cooking_temp,
+                cooking_temp=cooking_temp_in_fahrenheit,
                 servings=servings
             )
-            
-            
+
             new_recipe.save()
 
             
+            messages.success(request, 'Recipe Submitted Successfully!')
+
+            
+            return redirect('recipecreation')  
 
     else:
         form = NewRecipeCreation()
 
     return render(request, "recipecreation.html", {"form": form})
+
 

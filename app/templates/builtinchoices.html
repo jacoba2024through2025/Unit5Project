@@ -2,14 +2,46 @@
 
 {% block content %}
 
-<form method="POST" class="form-background">
+<h1 class="search-type">Search For A Recipe By Its Ingredients</h1>
+<form method="POST" class="form-background-style">
     {% csrf_token %}
     <p>
-        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-        <input type="text" name="search_bar" id="search_bar" >
+        <div class="search_option">
+            <button type="submit" class="search-button" ><i class="fa-solid fa-magnifying-glass icon-option"></i></button>
+            <input type="text" placeholder="Search By Ingredients... Click The Search Icon To Populate Results" name="search_bar" id="search_bar" class="search-input" >
+
+        </div>
+        
     </p>
     
 </form>
+
+<div class="form-list">
+    <div class="list-form">
+        <h2 class="help-header">Stuck? Try These Keywords. Happy Searching.</h2>
+
+        <ul class="unordered-style">
+            <li class="list-item-store">Chicken</li>
+            <li class="list-item-store">Enchilada</li>
+            <li class="list-item-store">Onion</li>
+            <li class="list-item-store">Potato</li>
+            <li class="list-item-store">Cheese</li>
+            <li class="list-item-store">Milk</li>
+            <li class="list-item-store">Vanilla</li>
+            <li class="list-item-store">Cake</li>
+            <li class="list-item-store">Sausage<li>
+            <li class="list-item-store">Chili</li>
+
+
+        </ul>
+    </div>
+
+
+    
+
+</div>
+
+
 
 <div class="output-display form-background">
     {% if result %}
@@ -19,7 +51,7 @@
             <p class="result-fonttype">Recipe Name: {{ recipe.recipe_name }}</p>
             <p class="result-fonttype">Author: {{ recipe.recipe_author }}</p>
             <p class="result-fonttype">Method: {{ recipe.recipe_type }}</p>
-            <p class="result-fonttype">Temperature: {{ recipe.cooking_temp }}</p>
+            <p class="result-fonttype">Temperature: {{ recipe.cooking_temp }}℉</p>
             <p class="result-fonttype">Ingredients: {{ recipe.ingredients_needed }}</p>
             <p class="result-fonttype">Instructions: {{ recipe.recipe_instructions }}</p>
             

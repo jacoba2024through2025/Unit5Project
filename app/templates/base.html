@@ -7,7 +7,7 @@
     <title>{% block title %}Student Kitchen{% endblock %}</title>
     <link rel="stylesheet" href="{% static "styles.css" %}"/>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
+    <link rel="icon" type="image/x-icon" href="{% static 'student-recipe.png' %}">
     
 </head>
 <body>
@@ -18,20 +18,25 @@
                     <div class="link-container">
                         <img src="{% static 'student-recipe.png' %}" alt="Student Kitchen Logo" class="logo-properties">
                         <div class="moving-links-div">
-                            <li><i class="fa-solid fa-house icon-styling"></i><a href="{% url 'home' %}" class="nav-link-styling" >Home</a></li>
-
-
-                            <li><i class="fa-solid fa-users icon-styling"></i><a href="{% url 'forums' %}" class="nav-link-styling" >Forums</a></li>
-
-                            <li><i class="fa-solid fa-circle-exclamation icon-styling"></i><a href="{% url 'share' %}" class="nav-link-styling" >About</a></li>
-
-                            <div class="dropdown">
-                                <button class="link"><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-bars"></i></button>
-                                <div class="dropdown-menu">
-                                    <li><i class="fa-solid fa-cart-shopping"></i><a class="font-color"  href="{% url 'currentrecipe' %}">Current Recipes</a></li>
+                            <div class="linked-labels">
+                                <li><i class="fa-solid fa-house icon-styling"></i><a href="{% url 'home' %}" class="nav-link-styling" >Home</a></li>
                                 
+
+                                
+                                
+                                
+                                
+                                <li><i class="fa-solid fa-circle-exclamation icon-styling"></i><a href="{% url 'share' %}" class="nav-link-styling" >About</a></li>
+
+                                <div class="dropdown">
+                                    <button class="link"><i class="fa-solid fa-cart-shopping"></i><i class="fa-solid fa-bars"></i></button>
+                                    <div class="dropdown-menu">
+                                        <li><i class="fa-solid fa-cart-shopping"></i><a class="font-color"  href="{% url 'currentrecipe' %}">Current Recipes</a></li>
+                                    
+                                    </div>
                                 </div>
                             </div>
+                            
                         
                         </div>
 

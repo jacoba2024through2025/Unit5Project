@@ -1,8 +1,30 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
+
 {% block content %}
-    <form action="{% url 'recipecreation'%}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <div class="form-container">
+        {% if messages %}
+            <div class="alert alert-success">
+                {% for message in messages %}
+                    <h2 class="header-styling-2">{{ message }}<h2>
+                {% endfor %}
+            </div>
+        {%else%}
+            <h2 class="header-styling-2">Create a Recipe</h2>
+        {% endif %}
+        
+
+        <!-- Display success message if recipe is submitted -->
+        
+
+        <form action="{% url 'recipecreation' %}" method="POST" class="recipe-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
 {% endblock %}
+

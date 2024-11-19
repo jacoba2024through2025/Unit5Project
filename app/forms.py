@@ -10,7 +10,7 @@ class NewRecipeCreation(forms.Form):
     recipe_instructions = forms.CharField(max_length=1200)
     prep_time_in_minutes = forms.IntegerField(required=False)
     prep_time_in_hours = forms.IntegerField(required=False)
-    cooking_temp = forms.IntegerField(required=False)
+    Cooking_Temperature_In_Fahrenheit = forms.IntegerField(required=False)
     servings = forms.IntegerField(required=False)
 
 
