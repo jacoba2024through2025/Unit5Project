@@ -217,12 +217,15 @@ def built_in_choices(request):
 
     filter_type = request.POST.get("search_bar")
     if filter_type:
+        context['usersearchname'] = filter_type
         
         all_data = RecipeData.objects.none()
 
         
         for option in filter_type.split():
             all_data = all_data | RecipeData.objects.filter(ingredients_needed__icontains=option)
+        if not all_data:
+            context['userwrongname'] = filter_type
 
     context['result'] = all_data
 

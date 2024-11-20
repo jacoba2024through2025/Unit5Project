@@ -3,7 +3,11 @@
 {% block content %}
 
 <div class="background-anim">
-    <h1 class="search-type">Search For A Recipe By Its Ingredients</h1>
+    {% if not result %}
+        <h1 class="search-type"> {{userwrongname}} Recipes Can Not Be Found. Create Your Own {{userwrongname}} Recipes!</h1>
+    {% else %}
+        <h1 class="search-type">Results found for {{usersearchname}}</h1>
+    {% endif %}
 <form method="POST" class="form-background-style">
     {% csrf_token %}
     <p>
