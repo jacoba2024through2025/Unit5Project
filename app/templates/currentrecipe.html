@@ -1,56 +1,60 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2 class="saved-recipe-header">
-        <i class="fa-solid fa-bars-staggered"></i>
-        Saved Recipes
-    </h2>
-    
-    {% if saved_recipes %}
-        <div>
-            {% for recipe in saved_recipes %}
-                <div class="saved-recipe">
-                    <h3 class="returned-header">{{ recipe.recipe_name }}</h3>
-                    <p class="returned-para">Author: {{ recipe.recipe_author }}</p>
-                    <p class="returned-para">Method: {{ recipe.recipe_type }}</p>
-                    <p class="returned-para">Ingredients: {{ recipe.ingredients_needed }}</p>
-                    <p class="returned-para">Instructions: {{ recipe.recipe_instructions }}</p>
-                    <p class="returned-para">Cooking Temperature: {{ recipe.cooking_temp }}°F</p>
-                    <p class="returned-para">Prep Time: 
-                        {% if recipe.prep_time_in_hours %}
-                            {{ recipe.prep_time_in_hours }} hours 
-                        {% endif %}
-                        {% if recipe.prep_time_in_minutes %}
-                            {{ recipe.prep_time_in_minutes }} minutes 
-                        {% endif %}
-                    </p>
-                    <p class="returned-para">Servings: {{ recipe.servings }}</p>
-                    
-                    
-                    <form method="POST" action="{% url 'currentrecipe' %}">
-                        {% csrf_token %}
+    <div class="background-anim-saved">
+        <h2 class="saved-recipe-header">
+            <i class="fa-solid fa-bars-staggered"></i>
+            Saved Recipes
+        </h2>
+        
+        {% if saved_recipes %}
+            <div>
+                {% for recipe in saved_recipes %}
+                    <div class="saved-recipe">
+                        <h3 class="returned-header">{{ recipe.recipe_name }}</h3>
+                        <p class="returned-para">Author: {{ recipe.recipe_author }}</p>
+                        <p class="returned-para">Method: {{ recipe.recipe_type }}</p>
+                        <p class="returned-para">Ingredients: {{ recipe.ingredients_needed }}</p>
+                        <p class="returned-para">Instructions: {{ recipe.recipe_instructions }}</p>
+                        <p class="returned-para">Cooking Temperature: {{ recipe.cooking_temp }}°F</p>
+                        <p class="returned-para">Prep Time: 
+                            {% if recipe.prep_time_in_hours %}
+                                {{ recipe.prep_time_in_hours }} hours 
+                            {% endif %}
+                            {% if recipe.prep_time_in_minutes %}
+                                {{ recipe.prep_time_in_minutes }} minutes 
+                            {% endif %}
+                        </p>
+                        <p class="returned-para">Servings: {{ recipe.servings }}</p>
                         
-                        <input type="hidden" name="delete_recipe_id" value="{{ recipe.id }}">
-                        <button type="submit" class="form-buttons form-buttons-filter">
-                            <i class="fa-solid fa-delete-left"></i>
-                            Delete From Cart
-                        </button>
-                        <button type="button" class="form-buttons form-1-home-button">
-                            <a href="{% url 'forums' recipe.recipe_author %}" class="form-1-anchor-style">
-                                Rate This Recipe
-                            </a>
-                            <i class="fa-regular fa-star"></i>
-                        </button>
-                    </form>
-                </div>
-                <hr>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p class="no-show-recipes">
-            <i class="fa-solid fa-filter-circle-xmark"></i>
-            Whoops! We could not find any recipes saved! Start by searching or creating your own.
-        </p>
-    {% endif %}
+                        
+                        <form method="POST" action="{% url 'currentrecipe' %}">
+                            {% csrf_token %}
+                            
+                            <input type="hidden" name="delete_recipe_id" value="{{ recipe.id }}">
+                            <button type="submit" class="form-buttons form-buttons-filter">
+                                <i class="fa-solid fa-delete-left"></i>
+                                Delete From Cart
+                            </button>
+                            <button type="button" class="form-buttons form-1-home-button">
+                                <a href="{% url 'forums' recipe.recipe_author %}" class="form-1-anchor-style">
+                                    Rate This Recipe
+                                </a>
+                                <i class="fa-regular fa-star"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-show-recipes">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+                Whoops! We could not find any recipes saved! Start by searching or creating your own.
+            </p>
+        {% endif %}
+
+    </div>
+    
 {% endblock %}
 

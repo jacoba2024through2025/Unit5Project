@@ -63,7 +63,7 @@ header {
 }
 
 .moving-links-div {
-    margin-top: 15vh;
+    margin-top: 10vh;
     display: flex;
     gap: 20vw;
 }
@@ -265,8 +265,9 @@ header {
     margin-top: 2em;
     background: white;
     
-    
-    border-radius: 1em;
+    margin-right: 2vh;
+    margin-left:2vh;
+    border-radius: 0.5em;
     box-shadow: .50em .50em 1em;
     
 }
@@ -283,7 +284,7 @@ header {
     padding-left: 30px;
     cursor: pointer;
     display: inline-block;
-    color: red;
+    color: rgb(210,45,0,255);
     font-family: sans-serif;
     font-weight: 500;
     line-height: 25px;
@@ -339,13 +340,13 @@ header {
         transform: translateX(0);
     }
     to {
-        transform: translateX(-100%)
+        transform: translateX(-15%)
     }
 }
 
 .logos-slide {
     white-space: nowrap;
-    animation: 10s slide infinite linear;
+    animation: 8s slide infinite linear;
     border-radius: 10%;
 }
 
@@ -502,17 +503,17 @@ header {
     font-family: sans-serif;
     margin: 0 auto;
     background: black;
-    border: 3px solid #fcb036;
+    border: 3px solid white;
     border-radius: 3%;
     display: table;
 }
 
 .header-style-page-separate {
-    color: #fcb036;
+    color: white;
     font-family: sans-serif;
     margin: 0 auto;
     background: black;
-    border: 3px solid #fcb036;
+    border: 3px solid white;
     border-radius: 3%;
     display: table;
 }
@@ -520,8 +521,8 @@ header {
 .paragraph-style {
     text-align: center;
     font-family: sans-serif;
-    color: rgb(210,45,0,255);
-    text-shadow: 0.5px 1px black;
+    color: white;
+    text-shadow: 2px 2px 15px black;
 }
 
 .main-header {
@@ -542,6 +543,7 @@ header {
     border: 3px solid rgb(210,45,0,255);
     border-style: double;
     border-radius: 3%;
+    box-shadow: 1em 1em 1em black;
 }
 
 .form-background-style {
@@ -659,20 +661,13 @@ header {
     
 }
 
-.form-buttons-help {
 
-}
-
-
-
-.form-buttons-filter-help {
-    margin-left: 4em;
-}
 
 .unordered-style {
     text-align: center;
     font-family: sans-serif;
     color: rgb(210,45,0,255);
+    
     
 
 }
@@ -680,12 +675,59 @@ header {
 .help-header {
     text-align: center;
     font-family: sans-serif;
-    color: rgb(210,45,0,255)
+    color: rgb(210,45,0,255);
+    
 }
 
 .list-form {
     background: white;
     margin-left: 16vw;
     margin-right: 16vw;
+    padding-bottom: 25vh;
     border-radius: 3%;
+    box-shadow: 1em 1em 1em black;
+}
+
+
+.background-anim {
+    padding-top: 10vh;
+    padding-bottom: 2vh;
+    background: linear-gradient(45deg, rgb(210,45,0,255), black, white);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.background-anim-saved {
+    padding-top: 10vh;
+    padding-bottom: 25vh;
+    background: linear-gradient(45deg, rgb(210,45,0,255), black, white);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

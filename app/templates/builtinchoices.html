@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<h1 class="search-type">Search For A Recipe By Its Ingredients</h1>
+<div class="background-anim">
+    <h1 class="search-type">Search For A Recipe By Its Ingredients</h1>
 <form method="POST" class="form-background-style">
     {% csrf_token %}
     <p>
@@ -81,3 +82,6 @@
 </div>
 
 {% endblock %}
+
+</div>
+
