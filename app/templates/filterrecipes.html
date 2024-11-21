@@ -60,11 +60,11 @@
     <form method="POST" class="form-background">
         {% csrf_token %}
         <p>
-            <label for="min_temp">Minimum Cooking Temperature (°F):</label>
+            <label for="min_temp" class="result-fonttype">Minimum Cooking Temperature (°F):</label>
             <input type="number" name="min_temp" id="min_temp" placeholder="Enter min temp">
         </p>
         <p>
-            <label for="max_temp">Maximum Cooking Temperature (°F):</label>
+            <label for="max_temp" class="result-fonttype">Maximum Cooking Temperature (°F):</label>
             <input type="number" name="max_temp" id="max_temp" placeholder="Enter max temp">
         </p>
         <button type="submit" class="form-buttons form-buttons-filter">Filter by Temperature</button>
@@ -116,7 +116,7 @@
             {% for recipe in result %}
                 <p class="result-fonttype">Recipe Name:{{ recipe.recipe_name }}</p>
                 <p class="result-fonttype">Method:{{ recipe.recipe_type }}</p>
-                <p class="result-fonttype">Temperature:{{ recipe.cooking_temp }}</p>
+                <p class="result-fonttype">Temperature:{{ recipe.cooking_temp }}℉</p>
                 <p class="result-fonttype">Author:{{ recipe.recipe_author }}</p>
                 <p class="result-fonttype">Ingredients:{{ recipe.ingredients_needed }}</p>
                 <p class="result-fonttype">Instructions:{{ recipe.recipe_instructions}}</p>

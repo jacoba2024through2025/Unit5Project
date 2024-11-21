@@ -33,6 +33,7 @@ li, a, button {
 }
 
 
+
 /*Styling for the navigation bar*/
 header {
     
@@ -42,6 +43,8 @@ header {
     background-color: white;
     margin-bottom: 0.5vw;
 }
+
+
 
 
 
@@ -630,13 +633,16 @@ header {
 .feedback-para {
     color: white;
     font-family: sans-serif;
+    
    
 }
 
 .linked-labels {
-    margin-left: 10vh;
+    padding-left: 12vw;
+    padding-top: 12vh;
+    
     display: flex;
-    gap: 35vh
+    justify-content: space-between;
 }
 
 .search-input {
@@ -755,7 +761,7 @@ header {
     }
 
     .linked-labels {
-        margin-left: 0.05vw;
+        margin-left: 0.01vw;
         gap: 1.5vh;
         margin-bottom: 10vh
     }
