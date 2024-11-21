@@ -371,7 +371,7 @@ header {
     display: flex;                     
     justify-content: center;           
     align-items: center;               
-    height: 35vh;                     
+    height: 40vh;                     
     flex-direction: column;            
     gap: 2vh;                         
     text-align: center;
@@ -756,8 +756,8 @@ header {
 
     .linked-labels {
         margin-left: 0.05vw;
-        gap: 2vh;
-        margin-bottom: 5vh
+        gap: 1.5vh;
+        margin-bottom: 10vh
     }
 
     
@@ -894,11 +894,13 @@ header {
 
     .linked-labels {
         margin-left: 0.05vw;
-        gap: 15vh;
+        gap: 20vh;
         margin-bottom: 5vh
     }
 
-    
+    .button-container {
+        height: 50vh;
+    }
     .logo-properties {
         width: 16em;
     }
@@ -962,7 +964,7 @@ header {
     .linked-labels {
         margin-left: 0.05vw;
         gap: 2vh;
-        margin-bottom: 5vh
+        margin-bottom: 10vh
     }
 
     
@@ -1090,7 +1092,7 @@ header {
     }
 }
 
-@media only screen and (min-width: 820px) and (max-width: 1280px) {
+@media only screen and (min-width: 768px) and (max-width: 950px) {
     
     header {
         padding-left: 8vw;
@@ -1143,4 +1145,64 @@ header {
         padding: 15px;
         width: 80%;
     }
+}
+
+
+@media only screen and (min-width: 1085px) and (max-width: 1281px) {
+
+    body {
+        overflow-x: hidden;
+    }
+    
+    header {
+        padding-left: 8vw;
+        margin-bottom: 1vw;
+    }
+
+    .linked-labels {
+        margin-left: 0.05vw;
+        gap: 20vh;
+        margin-bottom: 5vh
+    }
+
+    .button-container {
+        height: 50vh;
+    }
+    .logo-properties {
+        width: 16em;
+    }
+
+    
+    .search-header {
+        margin-top: 2.5em;
+        margin-left: 4em;
+        margin-right: 4em;
+    }
+
+    
+    .pill, .form-buttons, .form-buttons-filter {
+        padding: 0.7em 1.5em;
+        font-size: 14pt;
+    }
+
+    .background-anim {
+        padding-bottom: 40vh;
+    }
+    
+    .search-input {
+        width: 70vw;
+    }
+
+    
+    .list-form {
+        margin-left: 10vw;
+        margin-right: 10vw;
+    }
+
+    
+    .form-container {
+        padding: 15px;
+        width: 80%;
+    }
+
 }
